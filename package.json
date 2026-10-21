@@ -1,0 +1,14 @@
+{
+  "name": "crud-escola",
+  "version": "1.0.0",
+  "description": "Sistema CRUD de clientes, fornecedores e produtos com Bootstrap",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "dev": "node server.js"
+  },
+  "dependencies": {
+    "ejs": "^3.1.10",
+    "express": "^5.1.0"
+  }
+}
