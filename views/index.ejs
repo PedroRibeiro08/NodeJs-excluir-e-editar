@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Sistema CRUD</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="/styles.css" rel="stylesheet">
 </head>
 <body class="bg-light">
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
@@ -18,26 +19,29 @@
     </div>
 </nav>
 <main class="container py-4">
-<div class="p-4 p-md-5 mb-4 bg-white rounded-3 shadow-sm">
-    <h1 class="display-6">Sistema CRUD</h1>
-    <p class="lead">Gerenciamento de clientes, fornecedores e produtos.</p>
-</div>
-<div class="card shadow-sm">
-    <div class="card-body">
-        <h2 class="h5 mb-3">Integrantes da dupla</h2>
-        <ul class="mb-4">
-            <% nomesDupla.forEach(nome => { %>
-                <li><%= nome %></li>
-            <% }) %>
-        </ul>
-        <h2 class="h5 mb-3">Entidades</h2>
-        <div class="d-flex flex-wrap gap-2">
-            <a href="/clientes" class="btn btn-primary">Clientes</a>
-            <a href="/fornecedores" class="btn btn-primary">Fornecedores</a>
-            <a href="/produtos" class="btn btn-primary">Produtos</a>
-        </div>
+<section class="dashboard-intro">
+    <div>
+        <p class="eyebrow">Painel de gestão</p>
+        <h1>Visão geral</h1>
+        <p>Clientes, fornecedores e produtos em um só lugar.</p>
     </div>
-</div>
+</section>
+<section class="entity-grid" aria-label="Áreas do sistema">
+    <% resumo.forEach((entidade, indice) => { %>
+        <a class="entity-card" href="/<%= entidade.rota %>">
+            <span class="entity-mark" aria-hidden="true"><%= ['CL', 'FO', 'PR'][indice] %></span>
+            <span>
+                <h2><%= entidade.titulo %></h2>
+                <p><strong><%= entidade.total %></strong> <%= entidade.total === 1 ? 'registro' : 'registros' %></p>
+            </span>
+            <span class="entity-arrow" aria-hidden="true">&#8594;</span>
+        </a>
+    <% }) %>
+</section>
+<footer class="team-strip">
+    <span><strong>Integrantes</strong></span>
+    <span><%= nomesDupla.join(' · ') %></span>
+</footer>
 </main>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
 </body>
